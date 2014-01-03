@@ -2,7 +2,9 @@
 Elegant automated typing, for your text rotation needs
 
 ## Demo
-Soon.
+Soon. For now here's a (really compressed GIF):
+
+![](http://yum.gifsicle.com/e2d959b.gif)
 
 ## Setup
 You can install Typist via Bower with `bower install Typist` or download `typist.js` and include it the old-fashined way.
