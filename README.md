@@ -15,6 +15,11 @@ new Typist typist,
   textInterval:   3000
 ```
 
+### HTML
+```html
+JavaScript is <strong id="typist-element" data-typist="ugly,not as good an CoffeeScript">great</strong>
+```
+
 ## Options
 
 <table>
