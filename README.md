@@ -1,5 +1,7 @@
 # Typist
-Elegant automated typing, for your text rotation needs
+Elegant automated typing, for your text rotation needs.
+
+**Typist is fully compatible with responsive layouts.**
 
 ## Demo
 Soon. For now here's a (really compressed GIF):
