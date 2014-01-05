@@ -53,8 +53,8 @@ class @Typist extends Utilities
       typist:               element
       letterSelectInterval: 60
       interval:             3000
+      selectClassName:      "selectedText"
 
-    # mootools merge... need vanilla
     @options = @_extend @options, options
 
     # elements
@@ -132,7 +132,7 @@ class @Typist extends Utilities
     unselected = text.slice 0, offset
     unselected = unselected.join ""
 
-    @_setHtml @elements.typist, """#{unselected}<em class="selectedText">#{selected}</em>"""
+    @_setHtml @elements.typist, """#{unselected}<em class="#{@options.selectClassName}">#{selected}</em>"""
 
   typeText: (text) =>
 
