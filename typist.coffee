@@ -5,6 +5,9 @@ class Utilities
   _addEvent: (element, event, fn, useCapture = false) ->
     element.addEventListener event, fn, useCapture
 
+  _fireEvent: (event, options) =>
+    @options[event].call @, options if @options[event]
+
   _forEach: (array, fn, bind) ->
     i = 0
     l = array.length
@@ -85,6 +88,7 @@ class @Typist extends Utilities
 
     @_delay =>
       @typeText @variations[@offsets.current.index]
+      @_fireEvent "onNextSlide"
     , @options.letterInterval * @offsets.current.text.length
 
     # loop index
