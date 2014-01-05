@@ -24,6 +24,13 @@ new Typist typist,
 JavaScript is <strong id="typist-element" data-typist="ugly,not as good an CoffeeScript">great</strong>
 ```
 
+### CSS
+```CSS
+.selectedText {
+  background: #f00;
+}
+```
+
 ## Options
 
 <table>
@@ -44,6 +51,12 @@ JavaScript is <strong id="typist-element" data-typist="ugly,not as good an Coffe
     <td>integer</td>
     <td>3000</td>
     <td class="desc">Miliseconds between text rotation</td>
+  </tr>
+  <tr>
+    <td>selectClassName</td>
+    <td>string</td>
+    <td>selectedText</td>
+    <td class="desc">Select element class name</td>
   </tr>
 </table>
 

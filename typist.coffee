@@ -45,9 +45,10 @@ class @Typist extends Utilities
   constructor: (element, options = {}) ->
 
     @options =
-      typist:         element
-      letterInterval: 60
-      textInterval:   3000
+      typist:          element
+      letterInterval:  60
+      textInterval:    3000
+      selectClassName: "selectedText"
 
     # elements
     @elements =
@@ -124,7 +125,7 @@ class @Typist extends Utilities
     unselected = text.slice 0, offset
     unselected = unselected.join ""
 
-    @_setHtml @elements.typist, """#{unselected}<em class="selectedText">#{selected}</em>"""
+    @_setHtml @elements.typist, """#{unselected}<em class="#{@options.selectClassName}">#{selected}</em>"""
 
   typeText: (text) =>
 
