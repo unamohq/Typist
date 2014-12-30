@@ -3,17 +3,16 @@ Elegant automated typing, for your text rotation needs.
 
 **Typist is fully compatible with responsive layouts.**
 
-## Demo
-Soon. For now here's a (really compressed GIF):
-
-![](http://yum.gifsicle.com/e2d959b.gif)
-
 ## Setup
 You can install Typist via Bower with `bower install Typist` or download `typist.js` and include it the old-fashined way.
 
+## Basic Typist
+
+![](https://cldup.com/5UTJrISLOt.gif)
+
 ### CoffeeScript
 ```coffeescript
-typist = document.querySelectorAll "#typist-element"
+typist = document.querySelector "#typist-element"
 new Typist typist,
   letterInterval: 60
   textInterval:   3000
@@ -28,6 +27,61 @@ JavaScript is <strong id="typist-element" data-typist="ugly,not as good an Coffe
 ```CSS
 .selectedText {
   background: #f00;
+}
+```
+
+## Callback + Custom Style Typist
+
+![](https://cldup.com/c3cBS3p30w.gif)
+
+### CoffeeScript
+```coffeescript
+typist = document.querySelector "#typist-element"
+new Typist typist,
+  letterInterval: 60
+  textInterval:   3000
+  onSlide: (text, options) ->
+    suffix = options.typist.get "data-typist-suffix"
+    log "#{text} #{suffix}" # ugly since it's JS
+```
+
+### HTML
+```html
+JavaScript is <strong id="typist-element" data-typist="ugly,not as good an CoffeeScript" data-typist-suffix="since it's JS">great</strong>
+```
+
+### CSS
+```CSS
+@keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+#typist-element {
+  &:after {
+    content: " ";
+    display: inline-block;
+    height: 47px;
+    position: relative;
+    top: 10px;
+    margin-left: 3px;
+    margin-right: 7px;
+    width: 4px;
+    background: #06a44d;
+    animation: blink 1s step-start 0s infinite;
+    -webkit-animation: blink 1s step-start 0s infinite;
+  }
+}
+
+.selectedText {
+  display: none;
 }
 ```
 
@@ -57,6 +111,12 @@ JavaScript is <strong id="typist-element" data-typist="ugly,not as good an Coffe
     <td>string</td>
     <td>selectedText</td>
     <td class="desc">Select element class name</td>
+  </tr>
+  <tr>
+    <td>onSlide</td>
+    <td>function</td>
+    <td>null</td>
+    <td class="desc">Callback when the slide changes, returns two arguments `text` (current variation) and `option` (an object of variables that might be of use, like the `slideIndex` or the typist element itself)</td>
   </tr>
 </table>
 

@@ -5,9 +5,6 @@ class Utilities
   _addEvent: (element, event, fn, useCapture = false) ->
     element.addEventListener event, fn, useCapture
 
-  _fireEvent: (event, options) =>
-    @options[event].call @, options if @options[event]
-
   _forEach: (array, fn, bind) ->
     i = 0
     l = array.length
@@ -40,15 +37,25 @@ class Utilities
   _empty: (element) =>
     @_setHtml element, ""
 
+  _fireEvent: (event, text) =>
+    @options[event].call(@, text, @options) if @options[event]
+
+  _extend: (object, properties) ->
+    for key, val of properties
+      object[key] = val
+    object
+
 class @Typist extends Utilities
 
   constructor: (element, options = {}) ->
 
     @options =
-      typist:          element
-      letterInterval:  60
-      textInterval:    3000
-      selectClassName: "selectedText"
+      typist:               element
+      letterSelectInterval: 60
+      interval:             3000
+
+    # mootools merge... need vanilla
+    @options = @_extend @options, options
 
     # elements
     @elements =
@@ -71,9 +78,9 @@ class @Typist extends Utilities
     @newText    = []
 
     # set up the timer
-    @timer      = @_periodical @slide, @options.textInterval
+    @timer      = @_periodical @slide, @options.interval
 
-  slide: =>
+  slide: (forcedText) =>
 
     # pick the variation text
     @offsets.current.text = @variations[@offsets.current.index]
@@ -88,9 +95,9 @@ class @Typist extends Utilities
     @offsets.current.index = @next @offsets.current.index
 
     @_delay =>
+      @options.currentSlideIndex = @offsets.current.index
       @typeText @variations[@offsets.current.index]
-      @_fireEvent "onNextSlide"
-    , @options.letterInterval * @offsets.current.text.length
+    , @options.letterSelectInterval * @offsets.current.text.length
 
     # loop index
     if @variations.length <= @offsets.current.index
@@ -116,7 +123,7 @@ class @Typist extends Utilities
   selectText: (letter, index) =>
     @_delay =>
       @selectOffset (@offsets.current.text.length - index) - 1
-    , index * @options.letterInterval
+    , index * @options.letterSelectInterval
 
   selectOffset: (offset) =>
     text       = @offsets.current.text
@@ -125,7 +132,7 @@ class @Typist extends Utilities
     unselected = text.slice 0, offset
     unselected = unselected.join ""
 
-    @_setHtml @elements.typist, """#{unselected}<em class="#{@options.selectClassName}">#{selected}</em>"""
+    @_setHtml @elements.typist, """#{unselected}<em class="selectedText">#{selected}</em>"""
 
   typeText: (text) =>
 
@@ -135,13 +142,15 @@ class @Typist extends Utilities
     # type each letter individually
     @_each @typeTextSplit, @typeLetters
 
+    @_fireEvent "onSlide", text
+
   typeLetters: (letter, index) =>
     clearInterval @timer
 
     # add some delay between typing letters
     @_delay =>
       @typeLetter letter, index
-    , index * @options.letterInterval
+    , index * @options.letterSelectInterval
 
   typeLetter: (letter, index) =>
     @_empty @elements.typist
@@ -150,4 +159,4 @@ class @Typist extends Utilities
     @_setHtml @elements.typist, @newText.join ""
 
     if @typeTextSplit.length is index + 1
-      @timer = @_periodical @slide, @options.textInterval
+      @timer = @_periodical @slide, @options.interval
