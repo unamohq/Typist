@@ -43,7 +43,7 @@ new Typist typist,
   letterInterval: 60
   textInterval:   3000
   onSlide: (text, options) ->
-    suffix = options.typist.get "data-typist-suffix"
+    suffix = options.typist.getAttribute "data-typist-suffix"
     log "#{text} #{suffix}" # ugly since it's JS
 ```
 
@@ -118,15 +118,15 @@ JavaScript is <strong id="typist-element" data-typist="ugly,not as good an Coffe
     <td>onSlide</td>
     <td>function</td>
     <td>null</td>
-    <td class="desc">Callback when the slide changes, returns two arguments `text` (current variation) and `option` (an object of variables that might be of use, like the `slideIndex` or the typist element itself)</td>
+    <td class="desc">Callback when the slide changes, returns two arguments `text` (current textvariation) and `option` (an object of variables that might be of use, like the `slideIndex` or the typist element itself)</td>
   </tr>
 </table>
 
 ## Requirements
-Typist is **framework-agnostic**. No need for jQuery. It's written in **CoffeeScript**, and compiled into JavaScript.
+Typist is **framework-agnostic**. No need for jQuery.
 
 ## Source code
 All efforts have been made to keep the source as clean and readable as possible.
 
 ## Requirements
-ShadowScroll is released under an MIT License, so do with it what you will.
+Typist is released under an MIT License, so do with it what you will.
