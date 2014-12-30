@@ -1,7 +1,9 @@
 # Typist
 Elegant automated typing, for your text rotation needs.
 
-**Typist is fully compatible with responsive layouts.**
+We've actually improved our CTR on the **Get Started Now** and **Discover More** buttons by nearly 40% since Typist explained that Positionly is for more than just people, but for more specific types of business.
+
+Typist is fully compatible with **responsive layouts.**
 
 ## Setup
 You can install Typist via Bower with `bower install Typist` or download `typist.js` and include it the old-fashined way.
