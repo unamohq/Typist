@@ -6,7 +6,7 @@ We've actually improved our CTR on the **Get Started Now** and **Discover More**
 Typist is fully compatible with **responsive layouts.**
 
 ## Setup
-You can install Typist via Bower with `bower install Typist` or download `typist.js` and include it the old-fashined way.
+You can install Typist via Bower with `bower install typist` or download `typist.js` and include it the old-fashined way.
 
 ## Basic Typist
 
