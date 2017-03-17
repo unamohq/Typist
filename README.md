@@ -1,4 +1,6 @@
 # Typist
+[![CDNJS](https://img.shields.io/cdnjs/v/Typist.svg)](https://cdnjs.com/libraries/Typist)
+
 Elegant automated typing, for your text rotation needs.
 
 We've actually improved our CTR on the **Get Started Now** and **Discover More** buttons by nearly 40% since Typist explained that Positionly is for more than just people, but for more specific types of business.
